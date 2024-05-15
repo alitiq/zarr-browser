@@ -1,10 +1,11 @@
-.env
-**/*.p
-**/*.csv
+.git
+.pytest_cache
+.nox
+.cache
 **/*.html
+**/*.png
 **/*.table
 **/*.def
 **/*.idx
 **/*.xlsx
-data/**
-plots/**
+**/*.zip
