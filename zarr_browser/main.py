@@ -1,8 +1,8 @@
-""" fastapi wrapper for """
+""" fastapi wrapper for zarr-browser"""
 
 from fastapi import FastAPI
 from fastapi.middleware.wsgi import WSGIMiddleware
-from xarray_browser.app import app as dashboard
+from zarr_browser.app import app as dashboard
 from starlette.middleware import Middleware
 from starlette.middleware.cors import CORSMiddleware
 import nest_asyncio

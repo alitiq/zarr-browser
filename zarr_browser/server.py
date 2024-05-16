@@ -16,11 +16,10 @@ app = dash.Dash(
             "content": "width=device-width initial-scale=1, maximum-scale=1",
         }
     ],
-    title="xarray-browser",
+    title="zarr-browser",
     update_title=None,
     suppress_callback_exceptions=True,
     external_stylesheets=[
         dbc.themes.BOOTSTRAP,
     ],
 )
-

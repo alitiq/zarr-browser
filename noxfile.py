@@ -1,12 +1,10 @@
 """ nox session definition """
 
-import os
 from typing import Any
-import subprocess
 
 import nox
 
-locations = "src", "noxfile.py"
+locations = "zarr_browser", "noxfile.py"
 
 
 # https://cjolowicz.github.io/posts/hypermodern-python-02-testing/
@@ -35,46 +33,16 @@ def lint(session: Any) -> None:
     session.run("flake8", *args)
 
 
-@nox.session(python=None)
-def tests(session: Any) -> None:
-    """runs a test session"""
-    session.run(
-        "docker",
-        "run",
-        "--rm",
-        "-v",
-        f"{os.getcwd()}:/app",
-        "operational_wind_solar:latest",
-        "pytest",
-        "tests/",
-    )
-
-
-@nox.session(python=None)
-def push_image_to_ecr(session: Any) -> None:
-    """This session updates the ecr docker image that will be used for operational use."""
-    ecr_password = subprocess.run(
-        ["aws", "ecr", "get-login-password", "--region", "eu-central-1"],
-        capture_output=True,
-        text=True,
-    ).stdout.replace("\n", "")
-    session.run(
-        "docker",
-        "login",
-        "-u",
-        "AWS",
-        "-p",
-        ecr_password,
-        "661115856326.dkr.ecr.eu-central-1.amazonaws.com",
-    )
-    session.run(
-        "docker",
-        "tag",
-        "operational_wind_solar",
-        "661115856326.dkr.ecr.eu-central-1.amazonaws.com/operational_wind_solar",
-    )
-    session.run(
-        "docker",
-        "push",
-        "661115856326.dkr.ecr.eu-central-1.amazonaws.com/operational_wind_solar",
-    )
+# @nox.session(python=None)
+# def tests(session: Any) -> None:
+#     """runs a test session"""
+#     session.run(
+#         "docker",
+#         "run",
+#         "--rm",
+#         "-v",
+#         f"{os.getcwd()}:/app",
+#         "zarr_browser:latest",
+#         "pytest",
+#         "tests/",
+#     )
