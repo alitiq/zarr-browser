@@ -33,7 +33,7 @@ docker run --name zarr_browser --rm -v $(pwd):/app -v {path_to_your_root_directo
 After running the command, open your browser and navigate to:
 
 ```
-http://localhost:443
+http://localhost:443/
 ```
 
 #### Run the Plotly Dash App within a FastAPI
@@ -47,7 +47,7 @@ docker run --name zarr_browser --rm -v $(pwd):/app -v {path_to_your_root_directo
 After running the command, open your browser and navigate to:
 
 ```
-http://localhost:443
+http://localhost:443/
 ```
 
 Make sure to replace `{path_to_your_root_directory}` with the actual path to your root directory containing the Zarr archives.
