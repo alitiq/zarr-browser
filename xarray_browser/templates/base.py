@@ -1,5 +1,5 @@
 """ base layout """
-
+import dash_bootstrap_components as dbc
 from dash import dcc
 from dash import html
 
@@ -16,7 +16,27 @@ def base_layout() -> html.Div:
                     dcc.Store(id="customer-config", storage_type="local"),
                 ]
             ),
-            html.Div(id="page-content"),
+            html.Div([
+                dbc.Row(
+                    [
+                        dbc.Col(
+                            [
+
+                            ],
+
+                            width=5,
+                            id='file-system-display'
+                        ),
+                        dbc.Col(
+                            [
+
+                            ],
+                            width=7,
+                            id='display-xarray'
+                        ),
+                    ]
+                )
+            ], id="page-content"),
             dcc.Store(id='open-dirs', data=[]),
         ],
         id="mainContainer",

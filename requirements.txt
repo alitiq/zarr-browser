@@ -1,9 +1,9 @@
 numpy==1.25.2
 pandas==2.1.0
-zarr==2.16.1
+zarr==2.18.0
 geopy==2.4.0
-xarray==2023.8.0
-dask==2023.6.0
+xarray==2024.5.0
+dask==2024.5.0
 pyproj==3.5.0
 geojson==2.5.0
 setuptools==60.0.0

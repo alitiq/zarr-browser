@@ -8,19 +8,13 @@ from xarray_browser.server import app, server
 from xarray_browser.callbacks.file_listing import (  # noqa:F401
     toggle_directory,
     generate_directory_listing,
+    display_file_system_page
+)
+from xarray_browser.callbacks.xarray_html import (  # noqa:F401
+    display_xarray_html
 )
 
 app.layout = base_layout()
-
-
-@app.callback(Output("page-content", "children"),
-              [Input("url", "pathname")],
-             [State('open-dirs', 'data')])
-def display_page(pathname, open_dirs):
-    """main window content handler"""
-    if pathname == '/' or pathname == '/browse':
-        pathname = os.environ['ROOT_DIR']
-    return generate_directory_listing(os.environ['ROOT_DIR'], open_dirs)
 
 
 

@@ -41,8 +41,7 @@ def generate_directory_listing(path, open_dirs):
         is_open = full_path in open_dirs
 
         dir_items.append(html.Li([
-            html.Span('[DIR] '),
-            html.Span(dir_name, id={'type': 'dir-link', 'path': full_path}, style={'cursor': 'pointer'}),
+            html.Span(dcc.Link(dir_name, href=full_path), id={'type': 'dir-link', 'path': full_path}, style={'cursor': 'pointer'}),
             html.Ul(id={'type': 'dir-content', 'path': full_path}, style={'display': 'block' if is_open else 'none'})
         ]))
 
@@ -58,13 +57,13 @@ def generate_directory_listing(path, open_dirs):
 
 @app.callback(
     Output('dir-content', 'children'),
-    [Input('dir-link',  'n_clicks')],
-    [State('dir-link',  'id'),
-     State('open-dirs', 'data')],
+    [Input("url", "pathname"),
+     ],
+    [State('open-dirs', 'data')],
     prevent_initial_call=True
 )
-def toggle_directory(n_clicks, dir_id, open_dirs):
-    dir_path = dir_id['path']
+def toggle_directory(n_clicks, pathname,  open_dirs):
+    dir_path = pathname
 
     if dir_path in open_dirs:
         open_dirs.remove(dir_path)
@@ -72,3 +71,13 @@ def toggle_directory(n_clicks, dir_id, open_dirs):
         open_dirs.append(dir_path)
 
     return generate_directory_listing(dir_path, open_dirs)
+
+
+@app.callback(Output("file-system-display", "children"),
+              [Input("url", "pathname")],
+             [State('open-dirs', 'data')])
+def display_file_system_page(pathname, open_dirs):
+    """main window content handler"""
+    if pathname == '/' or pathname == '/browse':
+        pathname = os.environ['ROOT_DIR']
+    return generate_directory_listing(pathname, open_dirs)
