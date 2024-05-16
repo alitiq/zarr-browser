@@ -56,7 +56,7 @@ Make sure to replace `{path_to_your_root_directory}` with the actual path to you
 
 - Ensure Docker is installed and running on your machine.
 - The `ROOT_DIR` environment variable should be set to the directory you want to navigate through with the Zarr-Browser.
-- Adjust the port mappings (`-p 8050:8050` or `-p 443:443`) as needed to avoid conflicts with other services running on your machine.
+- Adjust the port mappings (`-p 443:443`) as needed to avoid conflicts with other services running on your machine.
 
 ### 3. Running with SSL Certificates from Certbot
 
@@ -119,3 +119,5 @@ nox -s black lint
 - Enhanced visualisation
 - Support multiple data locations
 - Adding tests
+- Multi-User and User Management
+- API to access the data
